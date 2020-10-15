@@ -1,6 +1,7 @@
 import { toUnicode } from 'punycode';
 import React, { useEffect, useState } from 'react'
 import { createContext } from 'react'
+import { pathToFileURL } from 'url';
 import TodoListItem from '../components/TodoListItem';
 import { Todo } from '../models/Todo';
 import { getTodos, saveTodos } from '../services/TodoServices';
@@ -18,7 +19,12 @@ export const TodoContext = createContext<TodoContextType>(
 );
 
 const TodoProvider = (props: any) => {
-    const [todos, setTodos] = useState<Todo[]>(getTodos);
+    //const [todos, setTodos] = useState<Todo[]>(getTodos);
+    const [todos, setTodos] = useState<Todo[]>([
+        {id:1, title: 'todo 1', done:true},
+        {id:2, title: 'todo 2', done:false},
+        {id:2, title: 'todo 3', done:false}
+    ]);
     
     useEffect(() => {
         saveTodos(todos)
