@@ -1,8 +1,5 @@
-import { toUnicode } from 'punycode';
 import React, { useEffect, useState } from 'react'
 import { createContext } from 'react'
-import { pathToFileURL } from 'url';
-import TodoListItem from '../components/TodoListItem';
 import { Todo } from '../models/Todo';
 import { getTodos, saveTodos } from '../services/TodoServices';
 import { TodoContextType } from './TodoContextType';
@@ -19,25 +16,23 @@ export const TodoContext = createContext<TodoContextType>(
 );
 
 const TodoProvider = (props: any) => {
-    //const [todos, setTodos] = useState<Todo[]>(getTodos);
-    const [todos, setTodos] = useState<Todo[]>([
-        {id:1, title: 'todo 1', done:true},
-        {id:2, title: 'todo 2', done:false},
-        {id:2, title: 'todo 3', done:false}
-    ]);
+    const [todos, setTodos] = useState<Todo[]>(getTodos);
     
     useEffect(() => {
         saveTodos(todos)
     },[todos]);
     
     const addTodo = (title: string) => {
-        const todo: Todo = {id: todos.length += 1, title: title, done: false};
+        const todo: Todo = {id: todos.length + 1, title: title, done: false};
         setTodos([...todos, todo]);
     }
 
     const removeTodo = (todo: Todo) => {
         const index = todos.indexOf(todo);
-        setTodos(todos.filter((_, i) => i !== index ))
+        console.log(index);
+        const todosToRemove = todos.filter((_, i) => i !== index )
+        console.log(todosToRemove);
+        setTodos(todosToRemove);
     }
 
     const toggleTodo = (todo: Todo) => {

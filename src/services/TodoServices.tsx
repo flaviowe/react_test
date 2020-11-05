@@ -1,5 +1,3 @@
-import { join } from 'path';
-import React from 'react'
 import { Todo } from '../models/Todo';
 
 const TODO_STORAGE = 'todos';
@@ -16,6 +14,5 @@ export const getTodos = (): Todo[] => {
 }
 
 export const saveTodos = (todos: Todo[]) => {
-    if (todos?.length >= 1)
-        localStorage.setItem(TODO_STORAGE,JSON.stringify(todos));
+    localStorage.setItem(TODO_STORAGE,JSON.stringify(todos));
 }

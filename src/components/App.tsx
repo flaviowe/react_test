@@ -10,16 +10,11 @@ const App = () => {
         <TodoContext>
             <Router>
                 <Navbar></Navbar>
-                <br />
+                <br/>
                 <div className="uk-container">
                     <Switch>
-                        <Route path="/create">
-                            <AddTodo></AddTodo>
-                        </Route>
-                        <Route path="/">
-                            <h4>Minha lista de tarefas</h4>
-                            <TodoList></TodoList>
-                        </Route>
+                        <Route path="/create" component={AddTodo}/>
+                        <Route path="/" component={TodoList}/>
                     </Switch>
                 </div>
             </Router>

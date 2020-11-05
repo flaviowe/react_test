@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { TodoContext } from '../contexts/TodoContext';
 import { TodoContextType } from '../contexts/TodoContextType';
 import { useForm } from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/dist'
+import {yupResolver} from '@hookform/resolvers'
 import * as yup from 'yup';
 
 const schema = yup.object().shape(
@@ -42,7 +42,5 @@ const AddTodo = () => {
 
     );
 }
-
-
 
 export default AddTodo;
